@@ -1,2 +1,2 @@
 # RootGradedGroups
-Construction of several root graded groups, and computation of the commutator relations.
+Construction of several root graded groups and computations with the blueprint technique. 
