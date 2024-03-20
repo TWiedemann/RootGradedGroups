@@ -21,7 +21,7 @@ computeAllNeededParities := function()
 	od;
 end;
 
-# Tests whether all entries of the parity map are well-defined (i.e. no fail)
+# Tests whether all entries of the parity map are well-defined (i.e. no fail). I.e. verifies 10.4.8 and 10.4.13 in my PhD thesis.
 testAllParityValid := function()
 	local alpha, delta, numProblems, problemPairs;
 	numProblems := 0;
@@ -42,7 +42,7 @@ testAllParityValid := function()
 	# return problemPairs;
 end;
 
-# Tests whether F4Parity(alpha, delta) = F4Parity(-alpha, delta) for all alpha in F_4 and all simple delta
+# Tests whether F4Parity(alpha, delta) = F4Parity(-alpha, delta) for all alpha in F_4 and all simple delta. I.e. verifies the corresponding assertion in 10.4.13 in my PhD thesis.
 testParityNeg := function()
 	local alpha, delta;
 	for alpha in F4LinCom do
@@ -77,7 +77,7 @@ printPosParityTableTex := function()
 	od;
 end;
 
-# Tests whether the second component of the parity map is square-invariant
+# Tests whether the second component of the parity map is square-invariant. I.e. verifies part of 10.6.3 in my PhD thesis.
 testInvoParSquareTriv := function()
 	local alpha, delta, numProblems;
 	numProblems := 0;
