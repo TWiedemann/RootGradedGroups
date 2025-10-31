@@ -48,7 +48,7 @@ ModMinus := function(term)
 	if term.type = "ModMinus" then
 		return term.sub;
 	elif term.type = "ModSum" then
-		return ModSum(ModMinus(term.subLeft), ModMinus(term.subRight));
+		return ModSum(ModMinus(term.subRight), ModMinus(term.subLeft)); # "ModSum" is not abelian
 	else
 		return rec( type := "ModMinus", sub := term );
 	fi;
