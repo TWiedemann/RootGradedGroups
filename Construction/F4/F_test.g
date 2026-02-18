@@ -127,10 +127,10 @@ end;
 # Tests the commutator relations in 10.4.18 in my PhD thesis.
 testCommRel := function()
 	local x1, x2, x3, x4, comm;
-	x1 := Indeterminate(F, 1);
-	x2 := Indeterminate(F, 2);
-	x3 := Indeterminate(F, 3);
-	x4 := Indeterminate(F, 4);
+	x1 := Indeterminate(Integers, 1);
+	x2 := Indeterminate(Integers, 2);
+	x3 := Indeterminate(Integers, 3);
+	x4 := Indeterminate(Integers, 4);
 	comm := function(x, y)
 		return x^-1 * y^-1 * x * y;
 	end;

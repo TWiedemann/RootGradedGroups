@@ -7,8 +7,8 @@
 computeF4Parity := function(alpha, delta)
 	local w, x1, x2, gamma, conj;
 	w := F4WeylStandard(delta);
-	x1 := Indeterminate(F, 1);
-	x2 := Indeterminate(F, 2);
+	x1 := Indeterminate(Integers, 1);
+	x2 := Indeterminate(Integers, 2);
 	gamma := F4refl(delta, alpha);
 	if F4RootIsShort(alpha) then
 		conj := w^-1 * F4Roothom(alpha, x1, x2) * w;

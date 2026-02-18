@@ -1,7 +1,9 @@
 ### Second file to load.
 ### In this file, we define an F_4-graded group by folding a Chevalley group of type E_6.
-### The Chevalley group is defined over the ground field F. The short root groups of the
-### F_4-graded group are parametrised by F x F and the long root groups by F.
+### In the following comments, we denote by R the polynomial ring over the integers in
+### infinitely many variables.
+### The Chevalley group is defined over R. The short root groups of the
+### F_4-graded group are parametrised by R x R and the long root groups by R.
 
 # ---- Construction of the Chevalley group ---
 
@@ -23,14 +25,16 @@ repMatrix := function(x)
 	return TransposedMat(result);
 end;
 
-# Returns id + mat + mat^2/2 + mat^3/3! + ...
-matrixExp := function(mat)
+# r: Element of R.
+# mat: A square matrix.
+# Output: id + r*mat + r^2*mat^2/2 + r^3*mat^3/3! + ...
+matrixExp := function(r, mat)
 	local result, A, n;
 	result := mat^0;
 	A := mat;
 	n := 1;
 	while not IsZero(A) do
-		result := result + A;
+		result := result + r^n* A;
 		n := n+1;
 		A := A*mat/n;
 	od;
@@ -41,7 +45,7 @@ end;
 # r: An element of F.
 # Output: x_root(r) where x_root is the root homomorphism in the Chevalley group
 E6RoothomOnNumber := function(root, r)
-	return matrixExp(r*repMatrix(E6Lie.(root)));
+	return matrixExp(r, repMatrix(E6Lie.(root)));
 end;
 
 # ----- End of Chevalley group ----
