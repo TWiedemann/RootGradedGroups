@@ -67,6 +67,39 @@ testRootHomsPreserveQ := function()
 	od;
 end;
 
+# Tests whether root homomorphisms are indeed homomorphisms of groups
+testRootHomIsHom := function()
+	local u1, u2, a, b, i, j, roothom, prod;
+	u1 := v[1];
+	u2 := v[2];
+	a := X(Integers, "a");
+	b := X(Integers, "b");
+	# Long roots
+	for i in [1..n] do
+		for j in [1..n] do
+			if i <> j then
+				for roothom in [ Xpm, Xpp, Xmm ] do
+					prod := compose([ roothom(i, j, a), roothom(i, j, b)]);
+					if not funcsAreEqual(prod, roothom(i, j, a+b)) then
+						Print("Problem\n");
+					fi;
+				od;
+			fi;
+		od;
+	od;
+	# Short roots
+	for i in [1..n] do
+		for roothom in [ Xp, Xm ] do
+			prod := compose([ roothom(i, u1), roothom(i, u2)]);
+			if not funcsAreEqual(prod, roothom(i, u1+u2)) then
+				Print("Problem\n");
+			fi;
+		od;
+	od;
+end;
+
+# ----- Tests of the commutator relations -----
+
 # Tests commutator relations on pairs of long roots
 testLongLongComm := function()
 	local a, b, i, j, k, l, x1, x2, y1, y2, comm, result, bool;
@@ -171,39 +204,6 @@ testLongLongComm := function()
 		od;
 	od;
 end;
-
-# Tests whether root homomorphisms are indeed homomorphisms of groups
-testRootHomIsHom := function()
-	local u1, u2, a, b, i, j, roothom, prod;
-	u1 := v[1];
-	u2 := v[2];
-	a := X(Integers, "a");
-	b := X(Integers, "b");
-	# Long roots
-	for i in [1..n] do
-		for j in [1..n] do
-			if i <> j then
-				for roothom in [ Xpm, Xpp, Xmm ] do
-					prod := compose([ roothom(i, j, a), roothom(i, j, b)]);
-					if not funcsAreEqual(prod, roothom(i, j, a+b)) then
-						Print("Problem\n");
-					fi;
-				od;
-			fi;
-		od;
-	od;
-	# Short roots
-	for i in [1..n] do
-		for roothom in [ Xp, Xm ] do
-			prod := compose([ roothom(i, u1), roothom(i, u2)]);
-			if not funcsAreEqual(prod, roothom(i, u1+u2)) then
-				Print("Problem\n");
-			fi;
-		od;
-	od;
-end;
-
-# ----- Tests of the commutator relations -----
 
 # Tests commutator relations on pairs (alpha, beta) with alpha long and beta short
 testLongShortComm := function()
